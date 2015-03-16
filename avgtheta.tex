@@ -139,7 +139,7 @@ Thus, in some sense, odd values of $k$ offer ``more bang for the buck.''
 In \secref{iud}, we also study the \emph{i.u.d.\ model}, in which a
 set, $S$, of $n$ points is independently and uniformly distributed in
 a square.  In this model, we show that essentially the same bounds hold.
-Specifically, If $m_k$ is the number of edges of $\theta_k(S)$, then
+Specifically, if $m_k$ is the number of edges of $\theta_k(S)$, then
 \[
     \E[m_k] \in nd_k/2\pm O(k\sqrt{n\log n}) \enspace \enspace ,
 \]
@@ -158,7 +158,7 @@ theta graphs and their applications, though most of this work focuses on
 worst-case analysis.  One notable exception is the work of Devroye \etal\
 \cite{devroye.gudmundsson.ea:on} who study the maximum degree of theta
 graphs and show that, if $S$ is a set of $n$ points independently and
-uniformly distributed in a certain unit square, then $\theta_k(S)$
+uniformly distributed in the unit square, then $\theta_k(S)$
 has maximum degree concentrated around $\Theta((\log n)/\log\log
 n)$.\footnote{Devroye \etal\ actually consider the closely-related Yao graphs
 \cite{flinchbaugh.jones:strong,yao:on}, but their proofs apply,
@@ -184,7 +184,7 @@ the same reasons).
 
 \item 
 Penrose and Yukich \cite{penrose.yukich:central,penrose.yukich:weak}
-develop weak laws of large number and central limit theorems for several
+develop weak laws of large numbers and central limit theorems for several
 statistics of proximity graphs of random point sets under some assumptions
 about the locality of the graph and the statistic. Their results apply
 to statistics like total edge length and number of components of graphs
@@ -266,19 +266,20 @@ Somewhat surprisingly, the value of $p_k$ in this case does not depend on $k$.
     \figlabel{mutual}
   \end{figure}
  
-  Let $T'$ be the triangle obtained by reflecting $T$ through the
-  midpoint of the edge $uw$ (so that $w$ is a vertex of $T'$). Note
+  Let $T'$ be the triangle obtained by reflecting $T$ through the midpoint
+  of the edge $uw$ so that $w$ is a vertex of $T'$. Equivalently, we
+  obtain $T'$ translating $u$ onto $w$ and rotating 180 degrees. Note
   that, because $k$ is even, $T'$ coincides with one of $u$'s cones.
   In particular, if $w\in u+C_i$, then $T'$ is contained in $w+C_{j}$
-  where $j=((i+k/2-1)\bmod k)+1$.  Therefore, the edge $uw$ is mutual if and
-  only if $T'\setminus T$ contains no points.  The area of $T'\setminus
-  T$ is
+  where $j=((i+k/2-1)\bmod k)+1$.  Therefore, the edge $uw$ is mutual
+  if and only if $T'\setminus T$ contains no points.  The area of
+  $T'\setminus T$ is
   \[
      A(T'\setminus T) = \alpha(r^2+(\ell-r)^2)  \enspace ,
   \]
-  where $\alpha=\cos(\theta/2)/(4\sin(\theta/2))$.  We now have
-  enough information to compute the probability that the edge $uw$
-  is mutual conditional on $\ell$ and $r$:
+  where $\alpha=\cos(\theta/2)/(4\sin(\theta/2))$ and $\theta=2\pi/k$.
+  We now have enough information to compute the probability that the
+  edge $uw$ is mutual conditional on $\ell$ and $r$:
   \[
     \Pr\{\mbox{$uw$ is mutual} \mid \ell,r\} = \exp(-\alpha(r^2+(\ell-r)^2))
       \enspace .
@@ -472,7 +473,7 @@ is a constant and $A < n/2$.  We will always bound these as follows:
    (1-A/n)^{n-c} 
       & = \frac{(1-A/n)^n}{(1-A/n)^c} \\
       & = \frac{\exp(-A)-O(A/n)}{(1-A/n)^c} \\
-      & = \frac{\exp(-A)-O(A/n)}{\sum_{i=0}^c \binom{c}{i}(-A/n)^i} \\
+      %& = \frac{\exp(-A)-O(A/n)}{\sum_{i=0}^c \binom{c}{i}(-A/n)^i} \\
       & = \frac{\exp(-A)-O(A/n)}{1-O(A/n)} \\
       % & = (\exp(-A)-O(A/n))(1+O(A/n)) \\
       & \ge \exp(-A) - O(A/n) 
@@ -639,7 +640,8 @@ From this we obtain the density function
         & = \frac{2\alpha x(\exp(-\alpha x^2)\pm O(\alpha x^2/n))}
                   {1-n^{-\Omega(c)}}(1-1/n) \\
         & = 2\alpha x\left(\exp(-\alpha x^2)\pm O(\alpha x^2/n)\right)
-                  (1+n^{-\Omega(c)})(1-1/n) \\
+                  (1+n^{-\Omega(c)})(1-1/n) &
+                  \text{(for sufficiently large $c$)} \\
         & = 2\alpha x\left(\exp(-\alpha x^2)\pm O((1+\alpha x^2)/n)\right) \\
         & = 2\alpha x\exp(-\alpha x^2)\pm O((\alpha x+\alpha^2 x^3)/n) \\
         & = 2\alpha x\exp(-\alpha x^2)\pm O((\alpha t + \alpha^2 t^3)/n) \\
@@ -721,10 +723,10 @@ and
                 - \Pr\{\mui\mid u\in C\}/2 \right) \\
         & \ge k(\sqrt{n}-4t)^2
               \left(1-n^{-\Omega(c)} - p_k/2 - O((\log n)^\frac52/n)\right) \\
-        & \ge (kn - 8t\sqrt{n})
+        & \ge (kn - 8kt\sqrt{n})
               \left(1-n^{-\Omega(c)} - p_k/2 - O((\log n)^\frac52/n)\right) \\
-        & = kn(1-p_k/2) - O(t\sqrt{n}) \\
-        & = nd_k/2 - O(\sqrt{nk\log n})
+        & = kn(1-p_k/2) - O(kt\sqrt{n}) \\
+        & = nd_k/2 - O(k\sqrt{nk\log n}) \enspace .
   \end{align*} 
   For the upper-bound we proceed as follows:
   \begin{align*}
@@ -791,6 +793,15 @@ Then, for all $\epsilon > 0$,
 \end{lem}
 
 \begin{proof}
+We wish to apply McDiarmid's Inequality to the number of edges in
+$\theta_k(S)$. Unfortunately, the number of edges in $\theta_k(S)$ does
+not satisfy the conditions needed to apply McDiarmid's Inequality;
+changing the location of a single point in $S$ could increase or
+decrease the number of edges in $\theta_k(G)$ by as much as $n-3$.
+To resolve this, we will add an additional set, $Q$, of $k$ points to
+$S$ so that we can apply McDiarmid's Inequality to the number of edges
+in $\theta_k(S\cup Q)$.
+
 Let $Q$ be a set of $k$ points chosen such that, for any point
 $u\in[0,\sqrt{n}]^2$, each of $u$'s $\theta_k$-cones contains exactly
 one point in $Q$. ($Q$ could be, for example, the vertices of a
@@ -833,7 +844,7 @@ $\bar{C}$ exceeds $\sqrt{cn\log n}$ or $\theta_k(S\cup Q)$ contains
 edges that join points in $Q$ to points in the core, $C$.
 \lemref{coresize} shows that the probability of the former event is at most
 $n^{-\Omega(c)}$, while \lemref{exists} shows that the probability of
-the latter event is at most $n^{-\Omega(c)}$
+the latter event is at most $n^{-\Omega(c)}$.
 \end{proof}
 
 
